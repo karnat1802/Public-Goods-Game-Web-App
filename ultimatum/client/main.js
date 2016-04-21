@@ -32,14 +32,32 @@ onYouTubeIframeAPIReady = function () {
 
     YT.load();
 
+
 AutoForm.addHooks('insertList',{
    onSuccess:function(){
    	console.log("successful Entry")
-   	
+   	return Session.set('successfulEntry',true)
    	
    }
 
 }) 
 
+Template.play.helpers({
+	isSuccessfulEntry: function () {
+		return Session.get('successfulEntry');
+	}
+});
+
+
+Template.play.created = function () {
+	return Session.set('successEntry', false);
+};
+
+Template.play.rendered = function () {
+};
+
+Template.play.destroyed = function () {
+	return Session.set('successfulEntry', false);
+};
 
 
