@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo';
+import {Session} from 'meteor/session';
 
 
 onYouTubeIframeAPIReady = function () {
@@ -32,7 +33,6 @@ onYouTubeIframeAPIReady = function () {
 
     YT.load();
 
-
 AutoForm.addHooks('insertList',{
    onSuccess:function(){
    	console.log("successful Entry")
@@ -48,7 +48,9 @@ Template.play.helpers({
 	}
 });
 
-
+/*****************************************************************************/
+/* Rsvp: Lifecycle Hooks */
+/*****************************************************************************/
 Template.play.created = function () {
 	return Session.set('successEntry', false);
 };
@@ -59,5 +61,36 @@ Template.play.rendered = function () {
 Template.play.destroyed = function () {
 	return Session.set('successfulEntry', false);
 };
+
+
+Template.instruction.created= function(){
+	return Session.set('successfulInstruction',false);
+};
+
+Template.instruction.helpers({
+	isSuccessful: function(){
+		return Session.get('successfulInstruction');
+	}
+});
+Template.instruction.events({
+	"click .but": function(){
+		return Session.set('successfulInstruction', true);
+	}
+})
+
+Template.question.created=function(){
+	return Session.set("successfulAnswer",false);
+}
+Template.question.helpers({
+	isSuccessfulAnswer: function(){
+		return Session.get('successfulAnswer');
+	}
+})
+
+Template.question.events({
+	"click .quiz": function(){
+		return Session.set('successfulAnswer',true);
+	}
+})
 
 
