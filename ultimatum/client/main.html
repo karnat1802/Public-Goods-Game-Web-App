@@ -6,26 +6,39 @@
   
  <div class="container">
   
-    <div class="page-header"><h1>The Investment Game</h1></div>
-    <p> Fill in the form below:</p>
- {{> player }}
+    <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
+      <h1><span class="color-blue">The Investment Game</span></h1>
+    </div>
+    {{>play}}
+
   </div>
 </body>
-<template name="player">
+<template name="play">
+
    {{#if isSuccessfulEntry}}
-   <h2>Great Job</h2>
+    {{>instruction}}
    {{else}}
-  {{> quickForm collection="PlayersList" id="insertList" type="insert"   }}
+   <br>
+   <br>
+   <p> Fill in the form below:</p>
+   
+   {{> quickForm collection="PlayersList" id="insertList" type="insert"   }}
  
-{{/if}}  </template>
+   {{/if}} 
+ <br>
+ </template>
 
 
 
 
 
 <template name="instruction">
- <div class="container">
-  <h2>Welcome to the Investment Game!</h2>
+  {{#if isSuccessful}}
+    {{>question}}
+   {{else}}
+  <br>
+  <br>
+  <h3>Welcome to the Investment Game!</h3>
 
 <p>Because the amount of money you can earn depends on your decisions in the game, it is important that you read these instructions with care. At the end of the instructions there is a quiz to ensure that you understand the instructions. You will not be paid for the HIT unless you correctly answer these questions.</p>
 
@@ -55,18 +68,48 @@ the points which you have kept for yourself (“income from points kept”).
 <li>Next, say you contribute two (2) points and all your neighbors contribute ten (10) points, the total contribution is 42 points, and the income that each player receives from the project is 0.4*42 = 16.8 points. Because you contributed two (2) points, your kept income is eight (8), and your total income  =  8+16.8 = 24.8 points.</li>
 <li>Finally, say you contribute ten (10) points, and all your neighbors contribute two (2) points, the total contribution is 18 points, and the income that each player receives from the project is 0.4*18 = 7.2 points. Because you contributed ten (10) points, your kept income is zero (0) points and your total income  =  0+7.2 = 7.2 points.</li></ul>
 
-<h3>Important Points to Note.</h3>
-
-<li>For each point that you decide to keep for yourself, your income for that round will increase by one point.</li>
-<li>For each point you contribute to the project, the total contribution to the project will rise by one point, and your income from the project will rise by 0.4*1 = 0.4 points.</li>
-<li>For each point you contribute to the project, the income of your neighbors will rise by 0.4 points each. For example, if you have 4 neighbors then a one point contribution by you will raise the total income of you and your neighbors by 5*0.4 = 2.0 points.</li>
-<li>Finally, say you contribute ten (10) points, and all your neighbors contribute two (2) points, the total contribution is 18 points, and the income that each player receives from the project is 0.4*18=7.2 points. Because you contributed ten (10) points, your kept income is zero (0) points and your total income = 0+7.2=7.2 points.</li></p>
-</div>
+</p>
+<p> If You've understood the rules click Next!</p>
+  <button type="submit" value="Next" class="but">Next</button>
+    
+<br>
+{{/if}}
 </template>
 
   
 <template name="question">
-  Welcome to the question page
+  {{#if isSuccessfulAnswer}}
+   {{> game}}
+   {{else}}
+  <br>
+  <h3>Welcome to the question page</h3>
+  <p>To test your understanding, we will ask you a few questions</p>
+    <p class="question">1. What is the answer to this question?</p>
+<ul class="answers">
+<input type="radio" name="q1" value="a" id="q1a"><label for="q1a">Answer 1</label><br/>
+<input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Answer 2</label><br/>
+<input type="radio" name="q1" value="c" id="q1c"><label for="q1c">Answer 3</label><br/>
+<input type="radio" name="q1" value="d" id="q1d"><label for="q1d">Answer 4</label><br/>
+</ul>
+<br>
+<p class="question">2. What is the answer to this question?</p>
+<ul class="answers">
+<input type="radio" name="q2" value="a" id="q1a"><label for="q2a">Answer 1</label><br/>
+<input type="radio" name="q2" value="b" id="q1b"><label for="q2b">Answer 2</label><br/>
+<input type="radio" name="q2" value="c" id="q1c"><label for="q2c">Answer 3</label><br/>
+<input type="radio" name="q2" value="d" id="q1d"><label for="q2d">Answer 4</label><br/>
+</ul>
+<button id="results" class="quiz">
+Show me the answers!
+</button>
+{{/if}}
 </template>
+
+<template name="game">
+  <br>
+  <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
+      <h2>You're playing: <span class="color-blue">The Investment Game</span></h2>
+    </div>
+  </template>
   
 
