@@ -20,10 +20,11 @@
    {{else}}
    <br>
    <br>
-   <p> Fill in the form below:</p>
    
-   {{> quickForm collection="PlayersList" id="insertList" type="insert"   }}
- 
+   <p> Fill in the form below:</p>
+  
+   {{> quickForm collection="PlayersList" id="insertList" type="insert" }}
+   
    {{/if}} 
  <br>
  </template>
@@ -70,7 +71,7 @@ the points which you have kept for yourself (“income from points kept”).
 
 </p>
 <p> If You've understood the rules click Next!</p>
-  <button type="submit" value="Next" class="but">Next</button>
+  <button type="submit" value="Next" class="but" id="results">Next</button>
     
 <br>
 {{/if}}
@@ -84,32 +85,195 @@ the points which you have kept for yourself (“income from points kept”).
   <br>
   <h3>Welcome to the question page</h3>
   <p>To test your understanding, we will ask you a few questions</p>
-    <p class="question">1. What is the answer to this question?</p>
+  <form>
+    <p class="question">1. What is the model of the Pairwise Public Good Game?</p>
 <ul class="answers">
-<input type="radio" name="q1" value="a" id="q1a"><label for="q1a">Answer 1</label><br/>
-<input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Answer 2</label><br/>
-<input type="radio" name="q1" value="c" id="q1c"><label for="q1c">Answer 3</label><br/>
-<input type="radio" name="q1" value="d" id="q1d"><label for="q1d">Answer 4</label><br/>
+<input type="radio" name="q1" value="a" id="q1a"><b>  Party 1 offers  Party 2 a sum of money. Party 2 decides to accept or reject this offer. If accepted, the money is split accordingly. Otherwise, neither player receives any of the money.</b><br>
+<br>
+<input type="radio" name="q1" value="b" id="q1b"><b>  Party 1 offers  Party 2 a sum of money. Party 2 decides to accept or reject this offer. If accepted, the money is split accordingly. Otherwise, neither player receives any of the money.</b><br>
+<br>
+<input type="radio" name="q1" value="c" id="q1c"><b>  Party 1 offers  Party 2 a sum of money. Party 2 decides to accept or reject this offer. If accepted, the money is split accordingly. Otherwise, neither player receives any of the money.</b><br>
+
 </ul>
 <br>
-<p class="question">2. What is the answer to this question?</p>
+<p class="question">2. How is payoff calculated?</p>
 <ul class="answers">
-<input type="radio" name="q2" value="a" id="q1a"><label for="q2a">Answer 1</label><br/>
-<input type="radio" name="q2" value="b" id="q1b"><label for="q2b">Answer 2</label><br/>
-<input type="radio" name="q2" value="c" id="q1c"><label for="q2c">Answer 3</label><br/>
-<input type="radio" name="q2" value="d" id="q1d"><label for="q2d">Answer 4</label><br/>
+<input type="radio" name="q2" value="a" id="q1a"><label for="q2a">Entirely from funds witheld from public donation</label><br/>
+<input type="radio" name="q2" value="b" id="q1b"><label for="q2b">Entirely from funds donated to public project</label><br/>
+<input type="radio" name="q2" value="c" id="q1c"><label for="q2c">Both from funds witheld from public donation and from funds donated to public project</label><br/>
+
 </ul>
-<button id="results" class="quiz">
-Show me the answers!
-</button>
+<br>
+<br>
+<input type ="submit" id="results" class="quiz">
+</form>
+<br>
+<br>
+{{quizResult}}
 {{/if}}
 </template>
 
 <template name="game">
+ {{#if isGameOver}}
+ {{>gameover}}
+ <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
+      <h4><span class="color-blue">Your total Payoff is: {{totalSum}}</span></h4>
+    </div>
+    <br>
+ 
+ {{else}}
+ 
   <br>
   <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
+
       <h2>You're playing: <span class="color-blue">The Investment Game</span></h2>
+      </div>
+     
+    <table style="width:100%">
+  <tr>
+    <td>Each experiement runs for 10 rounds. During a given round all participants are required to enter their contribution for that round. At th end of each round, each player receives the following infromation: (a) their contribution for that round, (b) the contributionss of each of their neighbors for that round, (c) their own cumulative payoff up to that point, (d) the collective score of the entire group, and (e) the highest group score of previous rounds</td>
+    
+  </tr>
+  
+</table>
+
+<br>
+  <br>
+  
+  <div class="scoreboard">
+   
+    
+        <table border="0" width="300" id="gameOption">
+          <tbody>
+            <tr>
+              <td width="83">
+                <span style="font-size:11pt;color:#404041">
+                   Rounds:  {{counter}}/10
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table border="0" width="300" id="gameOption">
+          <tbody>
+            <tr>
+              <td width="83">
+                <span style="font-size:11pt;color:#404041">
+                   Your Total Payoff: {{totalSum}}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+
+        
+ <form>
+        <table border="0" width="300" id="gameOption">
+          <tbody>
+            <tr>
+              <td width="83">
+
+                <span style="font-size:11pt;color:#404041">
+                   Your Contribution:
+                   <input type="text" name="EnterContri" placeholder="Enter value between 1-10" required>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+         <div id="blackout">
+       </div>
+         <div id="gameOption1" >
+          
+                
+                   &nbsp;
+          </div>      
+     
+   <div class="scoreboard1">
+     <input type="submit" class="make" id="results" value="Play Round!">
+    </div> 
+    </form>   
+  </div>
+     <div id="scoreboard2">
+      <table border="0" width="340" id="gameOption" >
+          <tbody>
+            <tr>
+              <td width="83">
+                <p>
+                <span style="font-size:11pt;color:#404041">
+                   Your contribution in the Previous Round:  {{yourcontri}}
+                </span>
+                </p>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <table border="0" width="340" id="gameOption">
+          <tbody>
+            <tr>
+              <td width="83">
+                <p>
+                <span style="font-size:11pt;color:#404041">
+                   Other Player's contribution in the previous round: {{oppContri}}
+                </span>
+              </p>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <div id="blackout1">
+       </div>
+         <div id="gameOption2" >
+          
+                
+                   &nbsp;
+          </div>      
+     
+
+  <!--  <div class="scoreboard1">
+     <button type="submit" class="make" id="results">Next Round</button>
+    </div>  -->
+   </div>  
+
+  <div class="scoreboard3" >
+    <div class="new" style="background-color:{{color1}}"><h4  style="color:{{bcolor1}}">&nbsp; &nbsp; &nbsp; User {{counter1}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color2}}"><h4 style="color:{{bcolor2}}">&nbsp; &nbsp; &nbsp; User {{counter2}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color3}}"><h4 style="color:{{bcolor3}}">&nbsp; &nbsp; &nbsp; User {{counter3}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color4}}"><h4 style="color:{{bcolor4}}">&nbsp; &nbsp; &nbsp; User {{counter4}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color5}}"><h4 style="color:{{bcolor5}}">&nbsp; &nbsp; &nbsp; User {{counter5}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color6}}"><h4 style="color:{{bcolor6}}">&nbsp; &nbsp; &nbsp; User {{counter6}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color7}}"><h4 style="color:{{bcolor7}}">&nbsp; &nbsp; &nbsp; User {{counter7}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color8}}"><h4 style="color:{{bcolor8}}">&nbsp; &nbsp; &nbsp; User {{counter8}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color9}}"><h4 style="color:{{bcolor9}}">&nbsp; &nbsp; &nbsp; User {{counter9}}</h4></div>
+    <div class="new1"></div>
+    <div class="new" style="background-color:{{color10}}"><h4 style="color:{{bcolor10}}">&nbsp; &nbsp; &nbsp; User {{counter10}}</h4></div>
+
+  </div>
+
+  {{/if}}
+  </template>
+
+
+  <template name="gameover">
+    <br>
+    <br>
+
+    <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
+      <h1><span class="color-blue">10 Rounds over!!!!</span></h1> 
     </div>
   </template>
   
+
+
 
