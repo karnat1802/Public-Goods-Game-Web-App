@@ -1,5 +1,3 @@
-/* CSS declarations go here */
-
 body {
   font-family: sans-serif;
   background-color: #315481;
@@ -19,7 +17,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 900px;
   margin:  auto;
   min-height: 100%;
   background: white;
@@ -46,7 +44,7 @@ h1 {
 }
 
 form {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: -10px;
   position: relative;
 }
@@ -125,4 +123,185 @@ header .hide-completed {
   .new-task input {
     padding-bottom: 5px;
   }
+}
+.answers li { 
+list-style: upper-alpha; 
+} 
+
+label { 
+margin-left: 0.5em; 
+cursor: pointer; 
+} 
+
+#results { 
+background: #dddada; 
+color: 000000; 
+padding: 3px; 
+text-align: center; 
+width: 120px; 
+cursor: pointer; 
+border: 1px solid gray; 
+}
+
+#results:hover { 
+background: #3d91b8; 
+color: #ffffff; 
+padding: 3px; 
+text-align: center; 
+width: 120px; 
+cursor: pointer; 
+border: 1px solid gray; 
+} 
+
+#categorylist { 
+margin-top: 6px; 
+display: none; 
+} 
+
+#category1, #category2, #category3, #category4, #category5, #category6, #category7, #category8, #category9, #category10, #category11 { 
+display: none; 
+}
+
+#closing {
+display: none;
+font-style: italic;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-radius: :5px;
+}
+th, td {
+    padding: 15px;
+} 
+
+.gameroom{
+   height:500px;
+   width:600px;
+   border-color:black;
+   border-style:solid;
+   border-width:3px;
+   margin: auto;
+   border-radius: 5px;
+}
+
+.scoreboard{
+  height:600px;
+  width:340px;
+  border-style:solid;
+  border-width: 3px;
+  border-color: white;
+  border-radius: 5px;
+  
+
+  float: left;
+  display: inline-block;
+}
+img{
+  height: 439px;
+  width:590px;
+}
+
+.make{
+  margin: auto;
+}
+#gameOption {
+    border-collapse: separate;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
+    background-color: #FDBE85;
+    height: 30px;
+
+}
+#gameTools{
+  border: 0px;
+  
+}
+
+.scoreboard1{
+  display: inline-block;
+  border-color: white;
+  border-collapse: separate;
+    border-radius: 0px;
+    
+    padding: 0px;
+    background-color: black;
+    margin: auto;
+  
+}
+#gameOption1 {
+    
+    height: 20px;
+    width: 70px;
+    background-color: white;
+    display: inline-block;
+}
+#blackout{
+  height:4px;
+  width: 300px;
+  background-color: white;
+  display: inline-block;
+
+}
+
+#scoreboard2{
+  height:300px;
+  width:350px;
+  border-style:solid;
+  border-width: 3px;
+  border-color: black;
+  border-radius: 5px;
+  margin: auto;
+  border-color: black;
+  display: inline-block;
+  border-color: white;
+  background-color: white;
+  
+
+
+}
+.scoreboard3{
+  height:326px;
+  width:130px;
+  border-style:solid;
+  border-width: 3px;
+  border-color: white;
+  border-radius: 5px;
+  margin: auto;
+  border-color: black;
+  display: inline-block;
+  float: right;
+}
+
+#myform{
+  height: 100px;
+  width: :300px;
+  border-color: black;
+  background-color: black;
+}
+.new{
+  height: 30px;
+  width:124px;
+  border-color: black;
+  display: inline-block;
+}
+.new1{
+  height: 2px;
+  width:124px;
+  background-color: black;
+}
+#blackout1{
+  height:85px;
+  width: 300px;
+  background-color: white;
+  display: inline-block;
+
+}
+#gameOption2 {
+    
+    height: 20px;
+    width: 100px;
+    background-color: white;
+    display: inline-block;
 }
