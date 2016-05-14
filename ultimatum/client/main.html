@@ -1,3 +1,14 @@
+
+<template name="home">
+  <div class="container">
+  Please accept the HIT to continue
+  </div>
+</template>
+
+
+<template name='experiment'>
+
+
 <head>
   <title>The Investment Game</title>
 </head>
@@ -13,6 +24,9 @@
 
   </div>
 </body>
+
+ </template> 
+
 <template name="play">
 
    {{#if isSuccessfulEntry}}
@@ -90,9 +104,9 @@ the points which you have kept for yourself (“income from points kept”).
 <ul class="answers">
 <input type="radio" name="q1" value="a" id="q1a"><b>  Party 1 offers  Party 2 a sum of money. Party 2 decides to accept or reject this offer. If accepted, the money is split accordingly. Otherwise, neither player receives any of the money.</b><br>
 <br>
-<input type="radio" name="q1" value="b" id="q1b"><b>  Party 1 offers  Party 2 a sum of money. Party 2 decides to accept or reject this offer. If accepted, the money is split accordingly. Otherwise, neither player receives any of the money.</b><br>
+<input type="radio" name="q1" value="b" id="q1b"><b>  Each party begins each round with 10 monetary units. Parties then how much of these funds to donate to public investment project and how much to keep for self. The total investment is scaled and divided evenly among players at the end of the game.</b><br>
 <br>
-<input type="radio" name="q1" value="c" id="q1c"><b>  Party 1 offers  Party 2 a sum of money. Party 2 decides to accept or reject this offer. If accepted, the money is split accordingly. Otherwise, neither player receives any of the money.</b><br>
+<input type="radio" name="q1" value="c" id="q1c"><b>  Party 1 offers Party 2 a sum of money. Party 2 must accept this offer.</b><br>
 
 </ul>
 <br>
@@ -118,6 +132,8 @@ the points which you have kept for yourself (“income from points kept”).
  {{>gameover}}
  <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
       <h4><span class="color-blue">Your total Payoff is: {{totalSum}}</span></h4>
+            <h4><span class="color-blue">Contribution of the last player: {{oppContri}}</span></h4>
+
     </div>
     <br>
  
@@ -154,7 +170,7 @@ the points which you have kept for yourself (“income from points kept”).
             </tr>
           </tbody>
         </table>
-        <table border="0" width="300" id="gameOption">
+        <!-- <table border="0" width="300" id="gameOption">
           <tbody>
             <tr>
               <td width="83">
@@ -164,7 +180,7 @@ the points which you have kept for yourself (“income from points kept”).
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
   
 
         
@@ -176,7 +192,7 @@ the points which you have kept for yourself (“income from points kept”).
 
                 <span style="font-size:11pt;color:#404041">
                    Your Contribution:
-                   <input type="text" name="EnterContri" placeholder="Enter value between 1-10" required>
+                   <input type="text" name="EnterContri" id="bar" placeholder="Enter value between 1-10" required>
                 </span>
               </td>
             </tr>
@@ -196,33 +212,47 @@ the points which you have kept for yourself (“income from points kept”).
     </form>   
   </div>
      <div id="scoreboard2">
+      
+        
       <table border="0" width="340" id="gameOption" >
           <tbody>
             <tr>
               <td width="83">
                 <p>
                 <span style="font-size:11pt;color:#404041">
-                   Your contribution in the Previous Round:  {{yourcontri}}
+                   Your contribution in this Round:  {{yourcontri}}
                 </span>
                 </p>
                 </td>
             </tr>
           </tbody>
         </table>
-        
+        <table border="0" width="340" id="gameOption">
+          <tbody>
+            <tr>
+              <td width="83">
+                <span style="font-size:11pt;color:#404041">
+                   Your Total Payoff: {{totalSum}}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <table border="0" width="340" id="gameOption">
           <tbody>
             <tr>
               <td width="83">
                 <p>
                 <span style="font-size:11pt;color:#404041">
-                   Other Player's contribution in the previous round: {{oppContri}}
+                   Other Player's contribution in this round: {{oppContri}}
                 </span>
               </p>
             </td>
             </tr>
           </tbody>
         </table>
+        
+        
       
         <div id="blackout1">
        </div>
@@ -233,7 +263,7 @@ the points which you have kept for yourself (“income from points kept”).
           </div>      
      
 
-  <!--  <div class="scoreboard1">
+   <!-- <div class="scoreboard1">
      <button type="submit" class="make" id="results">Next Round</button>
     </div>  -->
    </div>  
@@ -268,12 +298,21 @@ the points which you have kept for yourself (“income from points kept”).
   <template name="gameover">
     <br>
     <br>
-
+    {{#if isPlayAgain}}
+    {{>instruction}}
+   {{else}}
     <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 text-center">
       <h1><span class="color-blue">10 Rounds over!!!!</span></h1> 
+      <p> Click the button below if you want to play again</p>
+      <button type="submit" class="make" id="results">Play Again</button>
     </div>
+    {{/if}}
   </template>
-  
+ 
+
+
+
+
 
 
 
