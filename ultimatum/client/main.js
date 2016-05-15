@@ -258,12 +258,18 @@ Round: (instance.counter.get()),
    
     $("#scoreboard2").hide();
    
-  $("#scoreboard2").show(4000);
+   var v= (Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000);
+  setTimeout(function(){
+  $("#scoreboard2").show();
+
+}, v); 
+
 
    if(instance.checker.get()=='yes' && instance.counter.get()==1)
    {
     instance.checker.set('no');
    }
+   
 
 
   Session.set('NextRound', false);
