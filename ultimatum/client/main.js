@@ -110,6 +110,7 @@ Template.game.events({
 if(instance.checker.get()=='yes')
 {
   Session.set('NextRound',true);
+
 }
 
   // Session.set("nextRound",true);
@@ -118,12 +119,13 @@ if(Session.get('NextRound')==true){
     event.preventDefault();
   console.log("Stay next round");
  var player2 = Math.floor(Math.random() * 10);
-    var player1 = Number(event.target.EnterContri.value);
+    var player1 =Number (event.target.EnterContri.value);
     $("#bar").hide();
     instance.yourcontri.set(player1);
     console.log(player1);
     console.log(player2);
    var s = player1+player2;
+   console.log(s);
    console.log(Math.floor((s*2)/2)+ 10 - player1);
   var sum= Math.floor((s*2)/2)+ 10 - player1;
   var sum2 = Math.floor((s*2)/2) + 10 - player2;
@@ -255,21 +257,25 @@ Round: (instance.counter.get()),
 
 }
 
-   
+       
+    $('#scoreboard1').css('visibility', 'visible');
+    
     $("#scoreboard2").hide();
-   
-   var v= (Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000);
+
+    var v= (Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000);
   setTimeout(function(){
   $("#scoreboard2").show();
 
 }, v); 
+setTimeout(function(){
+  $("#scoreboard1").css('visibility','hidden');
 
+}, 3500); 
 
    if(instance.checker.get()=='yes' && instance.counter.get()==1)
    {
     instance.checker.set('no');
    }
-   
 
 
   Session.set('NextRound', false);
@@ -288,7 +294,11 @@ else{
 
    }
    $("#scoreboard2").hide();
+
    $("#bar").show()
+   
+   
+  
 
 // $(".scoreboard3").hide();
 // $(".scoreboard3").show(2000);
@@ -613,6 +623,7 @@ $(".scoreboard3").show(2000);
 Template.game.created=function(){
 
    return Session.set("NextRound",true);
+
 }
 
 Template.game.onCreated(function() {
