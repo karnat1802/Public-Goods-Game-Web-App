@@ -270,7 +270,7 @@ Round: (instance.counter.get()),
 setTimeout(function(){
   $("#scoreboard1").css('visibility','hidden');
 
-}, 3500); 
+}, v); 
 
    if(instance.checker.get()=='yes' && instance.counter.get()==1)
    {
