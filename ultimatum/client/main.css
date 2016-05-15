@@ -228,9 +228,23 @@ img{
     border-radius: 0px;
     
     padding: 0px;
-    background-color: black;
+    background-color: white;
     margin: auto;
   
+}
+#scoreboard1{
+  
+  border-color: white;
+  border-collapse: separate;
+    border-radius: 0px;
+    
+    padding: 0px;
+    background-color: white;
+    margin: auto;
+   
+   position: absolute;
+   display: inline-block;
+   visibility: hidden;
 }
 #gameOption1 {
     
@@ -264,7 +278,7 @@ img{
 
 }
 .scoreboard3{
-  height:326px;
+  height:324px;
   width:130px;
   border-style:solid;
   border-width: 3px;
